@@ -1,0 +1,148 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+// Main Class
+public class OopsAssignment {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Student Details Header
+        System.out.println("===================================");
+        System.out.println("        Ahsan Ali");
+        System.out.println("        Roll No: 2K25/CSM/20");
+        System.out.println("===================================\n");
+
+        // Catalog using dynamic dispatch
+        ArrayList<Product> electronics = new ArrayList<>();
+        electronics.add(new Electronics("Laptop", 1200, "High performance laptop"));
+        electronics.add(new Electronics("Smartphone", 900, "Latest model smartphone"));
+
+        ArrayList<Product> clothing = new ArrayList<>();
+        clothing.add(new Clothing("Shirt", 20, "Cotton formal shirt"));
+        clothing.add(new Clothing("Jeans", 35, "Slim fit jeans"));
+
+        ArrayList<Product> grocery = new ArrayList<>();
+        grocery.add(new Grocery("Rice", 10, "5kg rice bag"));
+        grocery.add(new Grocery("Milk", 2, "1 liter fresh milk"));
+
+        ArrayList<Product> books = new ArrayList<>();
+        books.add(new Books("Java Programming", 45, "Beginner to advanced Java"));
+        books.add(new Books("Civics Notes", 15, "Complete civics preparation"));
+
+        ArrayList<Product> furniture = new ArrayList<>();
+        furniture.add(new Furniture("Chair", 50, "Wooden study chair"));
+        furniture.add(new Furniture("Table", 120, "Office table"));
+
+        while (true) {
+            System.out.println("===== PRODUCT CATALOG MENU =====");
+            System.out.println("1. Electronics");
+            System.out.println("2. Clothing");
+            System.out.println("3. Grocery");
+            System.out.println("4. Books");
+            System.out.println("5. Furniture");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = sc.nextInt();
+            System.out.println();
+
+            switch (choice) {
+                case 1:
+                    for (Product p : electronics) p.display();
+                    break;
+                case 2:
+                    for (Product p : clothing) p.display();
+                    break;
+                case 3:
+                    for (Product p : grocery) p.display();
+                    break;
+                case 4:
+                    for (Product p : books) p.display();
+                    break;
+                case 5:
+                    for (Product p : furniture) p.display();
+                    break;
+                case 6:
+                    System.out.println("Exiting Program...");
+                    sc.close();  // Close the scanner before exiting
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice! Try again.\n");
+            }
+        }
+    }
+}
+
+// ================= PRODUCT (Base Class) =================
+abstract class Product {
+    String name;
+    double price;
+    String description;
+
+    Product(String name, double price, String description) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
+
+    abstract void display();
+}
+
+// ================= Child Classes =================
+
+class Electronics extends Product {
+    Electronics(String n, double p, String d) {
+        super(n, p, d);
+    }
+
+    void display() {
+        System.out.println("📱 Electronics: " + name + " | $" + price);
+        System.out.println("   " + description + "\n");
+    }
+}
+
+class Clothing extends Product {
+    Clothing(String n, double p, String d) {
+        super(n, p, d);
+    }
+
+    void display() {
+        System.out.println("👕 Clothing: " + name + " | $" + price);
+        System.out.println("   " + description + "\n");
+    }
+}
+
+class Grocery extends Product {
+    Grocery(String n, double p, String d) {
+        super(n, p, d);
+    }
+
+    void display() {
+        System.out.println("🛒 Grocery: " + name + " | $" + price);
+        System.out.println("   " + description + "\n");
+    }
+}
+
+class Books extends Product {
+    Books(String n, double p, String d) {
+        super(n, p, d);
+    }
+
+    void display() {
+        System.out.println("📚 Book: " + name + " | $" + price);
+        System.out.println("   " + description + "\n");
+    }
+}
+
+class Furniture extends Product {
+    Furniture(String n, double p, String d) {
+        super(n, p, d);
+    }
+
+    void display() {
+        System.out.println("🪑 Furniture: " + name + " | $" + price);
+        System.out.println("   " + description + "\n");
+    }
+}
